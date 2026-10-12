@@ -1,0 +1,29 @@
+{
+ "cases": [
+  {
+   "slug": "the-199-steps",
+   "title": "The Body on the 199 Steps",
+   "place": "Whitby, North Yorkshire",
+   "date": "October 2024",
+   "cover": "img/steps.jpg",
+   "blurb": "A fossil collector is found dead on the steps below St Mary's Church. Everyone close to him has an alibi, and every alibi is backed by a record.",
+   "modes": [
+    {
+     "id": "casual",
+     "name": "Casual",
+     "level": "no AI, hard",
+     "ai": "No AI. Solve it with your own head and a web browser.",
+     "about": "The complete case file: statements, phones, records and a map. Everything you need is in the file or checkable online."
+    },
+    {
+     "id": "reallife",
+     "name": "Real Life",
+     "level": "AI allowed, brutal",
+     "ai": "AI allowed. You will need more than AI.",
+     "about": "The full disclosure bundle after an arrest. More people, more records, camera stills and evidence you have to request by the right reference. The truth is not the same as in Casual mode.",
+     "warn": "Play Casual first: Real Life mode gives away the Casual solution."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ground Truth: fictional crimes, real-world evidence</title>
+<meta name="description" content="Detective cases you solve by checking the evidence against the real world: maps, the sky, time zones and public records.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero">
+  <img src="cases/the-199-steps/img/grimshaw.jpg" alt="Moonlit painting of Whitby's harbour, with gas-lit shopfronts and the masts of ships">
+  <div class="hero-text">
+    <h1>Ground Truth</h1>
+    <p>Fictional crimes in real places. The people are invented, but the streets, the sky and the records are real, so the answer is out there if you know where to check.</p>
+  </div>
+  <p class="credit">John Atkinson Grimshaw, <i>Whitby Docks</i>. Public domain.</p>
+</header>
+<main class="lib">
+  <h2>Open cases</h2>
+  <div class="cases" id="cases"><p class="small">Loading cases…</p></div>
+
+  <h2>How it works</h2>
+  <div class="how">
+    <div><h3>Pick a mode</h3><p><b>Casual</b> is a complete case file for solving with your own head, no AI. <b>Real Life</b> is the full disclosure bundle. AI is allowed, and you'll need more than AI.</p></div>
+    <div><h3>Work the evidence</h3><p>Open phones, read statements, scroll doorbell logs, measure distances on the map. In Real Life mode you request extra records by quoting the right reference.</p></div>
+    <div><h3>Check it against the world</h3><p>Some answers only exist outside the file: when the clocks changed, where the moon was, which time zone a town keeps. Look them up.</p></div>
+    <div><h3>Accuse</h3><p>Answer every question. Only a fully correct accusation unseals the solution, and you won't be told which part you got wrong.</p></div>
+  </div>
+
+  <h2>House rules</h2>
+  <div class="how">
+    <div><h3>It's fiction</h3><p>Every person, business, phone number and event is invented. Never contact real residents, businesses or police about a case.</p></div>
+    <div><h3>Nothing to install</h3><p>Everything runs in your browser. Your notes and requests stay on your device.</p></div>
+    <div><h3>No hints in the comments</h3><p>What's in the file is everything. Share theories with spoiler tags.</p></div>
+  </div>
+</main>
+<footer class="foot">Ground Truth. Location photographs are from Wikimedia Commons and credited where shown. Maps © OpenStreetMap contributors.</footer>
+<script>
+fetch('cases/index.json').then(r => r.json()).then(({ cases }) => {
+  const box = document.getElementById('cases');
+  box.innerHTML = '';
+  for (const c of cases) {
+    const a = document.createElement('a');
+    a.className = 'case-card';
+    a.href = `case.html?case=${encodeURIComponent(c.slug)}`;
+    a.innerHTML = `<img src="cases/${c.slug}/${c.cover}" alt=""><div><p class="kicker"></p><h3></h3><p></p><div class="pills"></div></div>`;
+    a.querySelector('.kicker').textContent = `${c.place}, ${c.date}`;
+    a.querySelector('h3').textContent = c.title;
+    a.querySelector('div > p:not(.kicker)').textContent = c.blurb;
+    for (const m of c.modes) { const s = document.createElement('span'); s.className = 'pill'; s.textContent = `${m.name}: ${m.level}`; a.querySelector('.pills').append(s); }
+    box.append(a);
+  }
+}).catch(() => { document.getElementById('cases').textContent = 'The case list could not load. Reload the page to try again.'; });
+</script>
+</body>
+</html>
